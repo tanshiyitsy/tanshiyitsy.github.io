@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tanshiyitsy.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="原生http不足以应对开发需求，所以需要使用框架加快开发效率，提高效率，使得代码高度统一Node中有许多web开发框架，express就是其中一种  官网首页：expressjs.com  基本使用step1:安装： 1npm i -S express step2:引包 1var express &#x3D; require(&#39;express&#39;) step3:创建服务器应用程序，也就是原来的http.cre">
+<meta property="og:type" content="article">
+<meta property="og:title" content="express">
+<meta property="og:url" content="https://tanshiyitsy.github.io/2020/07/29/express/index.html">
+<meta property="og:site_name" content="懒虫小谭的个人博客">
+<meta property="og:description" content="原生http不足以应对开发需求，所以需要使用框架加快开发效率，提高效率，使得代码高度统一Node中有许多web开发框架，express就是其中一种  官网首页：expressjs.com  基本使用step1:安装： 1npm i -S express step2:引包 1var express &#x3D; require(&#39;express&#39;) step3:创建服务器应用程序，也就是原来的http.cre">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-29T10:10:06.000Z">
+<meta property="article:modified_time" content="2020-07-29T13:10:57.766Z">
+<meta property="article:author" content="Poetry Tan">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://tanshiyitsy.github.io/2020/07/29/express/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>express | 懒虫小谭的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">懒虫小谭的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">凉风有信，秋月无边</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tanshiyitsy.github.io/2020/07/29/express/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Poetry Tan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懒虫小谭的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          express
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-07-29 18:10:06 / Modified: 21:10:57" itemprop="dateCreated datePublished" datetime="2020-07-29T18:10:06+08:00">2020-07-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/node/" itemprop="url" rel="index"><span itemprop="name">node</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>原生http不足以应对开发需求，所以需要使用框架加快开发效率，提高效率，使得代码高度统一<br>Node中有许多web开发框架，express就是其中一种</p>
+<blockquote>
+<p>官网首页：expressjs.com</p>
+</blockquote>
+<h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><p>step1:安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -S express</span><br></pre></td></tr></table></figure>
+<p>step2:引包</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br></pre></td></tr></table></figure>
+<p>step3:创建服务器应用程序，也就是原来的<code>http.createServer</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = express()</span><br><span class="line"><span class="comment">// 服务器收到GET请求/的时候，执行回调函数</span></span><br><span class="line">app.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    res.send(<span class="string">'hello,world'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="string">'/about'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req. res</span>)</span>&#123;</span><br><span class="line">    res.send('你好，世界')    # 中文该框架帮忙处理了</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 相当于原来的server.listen</span></span><br><span class="line">app.listen(<span class="number">3000</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'app is running at 3000'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>提供静态资源服务，公开指定目录，可以直接通过/public/xxx的方式访问public文件夹中的资源了<br>app.use(‘/public’,express.static(‘./public’))   # 开放public目录</p>
+<p>step4:基本路由<br>路由：有分发的意思，其实就是一张表，表里有具体的映射关系<br>请求方法+请求路径+处理函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app</span><br><span class="line">  .get(<span class="string">'/'</span>, funciton_name)</span><br><span class="line">  .post(<span class="string">'login'</span>, funciton_name)</span><br><span class="line">  .get(<span class="string">'billing'</span>, function_name)     <span class="comment">// 这个就可以被看为是一张路由表</span></span><br></pre></td></tr></table></figure>
+<p>静态文件处理：<br>app.use()的第一个参数是URL，浏览器访问时是第二个参数的别名，<br>./public目录下有login.html文件，下面表示以/public/开头时，去./public目录下找寻对应的文件<br>比如浏览器访问<code>xxx/public/login.html</code>就可以得到这个文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="string">'/public/'</span>, express.static(<span class="string">'./public/'</span>))</span><br><span class="line"><span class="comment">// 省略第一个参数，则访问时可以省略/public,浏览器只需要输入xxx/login.html,如果输入xxx/public/login.html则访问不到</span></span><br><span class="line">app.use(express.static(<span class="string">'./public/'</span>)) </span><br><span class="line"><span class="comment">// 比较特殊的,必须通过/a/login.html来访问文件public 文件夹里面的资源，a相当于是public的别名</span></span><br><span class="line">app.use(<span class="string">'/a/'</span>, express.static(<span class="string">'./public'</span>))</span><br></pre></td></tr></table></figure>
+<h1 id="在express中使用art-template模板引擎"><a href="#在express中使用art-template模板引擎" class="headerlink" title="在express中使用art-template模板引擎"></a>在express中使用<code>art-template</code>模板引擎</h1><h2 id="基本使用-1"><a href="#基本使用-1" class="headerlink" title="基本使用"></a>基本使用</h2><ol>
+<li>安装<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save atr-template</span><br><span class="line">npm install --save express-art-template</span><br></pre></td></tr></table></figure></li>
+<li>配置使用art-template<br>app.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="keyword">var</span> app = express()</span><br><span class="line">app.engine(<span class="string">'art'</span>, <span class="built_in">require</span>(<span class="string">'express-art-template'</span>）） <span class="comment">// 这里配置，第一个参数表示：当渲染以art结尾的文件时，使用art-template；</span></span><br><span class="line"><span class="comment">// express为response对象提供了一个方法：render</span></span><br><span class="line"><span class="comment">// render方法默认不可用，需要配置模版引擎才可使用</span></span><br><span class="line"><span class="comment">// res.render('html模板名',&#123;模板数据&#125;)；第一个参数不能写路径，默认会去项目中views目录下寻找，默认所有的视图文件都在views目录中</span></span><br><span class="line">app.get(<span class="string">'/'</span>, funciton(req, res)&#123;</span><br><span class="line">    res.render(<span class="string">'404.art'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="string">'/admin'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    res.render(<span class="string">'admin/index.html'</span>, &#123;</span><br><span class="line">        title: <span class="string">'管理系统'</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"># 如果想要修改render函数默认的views目录，可以</span><br><span class="line">app.set(<span class="string">'views'</span>, path)</span><br><span class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    res.send()    # send是express提供的，end是原生node提供的</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>这里用art 只是为了更好识别使用了art-template，可以自定义</li>
+<li>express-art-template：这个包专门用于express框架</li>
+<li>虽然外面不需要加载art-template包，但是也必须安装，因为express-art-template包依赖了art-template<br>index.html<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span> admin &#123;&#123; title &#125;&#125; <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="express中实现留言板"><a href="#express中实现留言板" class="headerlink" title="express中实现留言板"></a>express中实现留言板</h2><h3 id="原生语言实现"><a href="#原生语言实现" class="headerlink" title="原生语言实现"></a>原生语言实现</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    res.render(<span class="string">'index.html'</span>,&#123;</span><br><span class="line">        comments: comments</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="string">'/post'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    res.render(<span class="string">'post.html'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="string">'/pinglun'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> comment = req.query    <span class="comment">// 这个就是用户输入的内容，只能获取GET方法的表单内容</span></span><br><span class="line">    comments.unshift(comment)</span><br><span class="line">    res.redirect(<span class="string">'/'</span>) <span class="comment">//express封装的；等价于原生nodejs的res.statusCode = 302; res.setHeader('Location',  '/')</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="优化版"><a href="#优化版" class="headerlink" title="优化版"></a>优化版</h3><ul>
+<li>对于POST方法，express没有提供获取表单内容的API，必须使用插件（在express官网中, resources-&gt;middleware中可查看）</li>
+<li>凡是在浏览器输入地址回车，发送的都是GET请求</li>
+<li>POST需要使用<code>表单</code>或者<code>ajax请求</code></li>
+</ul>
+<ol>
+<li>安装<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save body-parser</span><br></pre></td></tr></table></figure></li>
+<li>配置<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 引包</span></span><br><span class="line"><span class="keyword">var</span> bodyParser = <span class="built_in">require</span>（<span class="string">'body-parser'</span>) </span><br><span class="line"><span class="comment">// 2. 配置</span></span><br><span class="line"><span class="comment">// 只要加入这个配置，则在req请求对象上会多出来一个属性：body</span></span><br><span class="line"><span class="comment">// 因此可以直接通过req.body 获取POST表单的请求实体数据了</span></span><br><span class="line">app.use(bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;))</span><br><span class="line"><span class="comment">// 3. 解析</span></span><br><span class="line">app.use(bodyParser.json())</span><br></pre></td></tr></table></figure>
+同一路径使用多次，但是<font color=#FF6A6A>不同的方法</font>请求<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">'/post'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    res.render(<span class="string">'post.html'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.post(<span class="string">'/post'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> comment = req.body    <span class="comment">// 获取POST的表单内容</span></span><br><span class="line">    comment.dateTime = <span class="string">'2020-07-24 10:34:23'</span></span><br><span class="line">    comments.unshift(comment)</span><br><span class="line">    res.redirect(<span class="string">'/'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="处理定制404页面"><a href="#处理定制404页面" class="headerlink" title="处理定制404页面"></a>处理定制404页面</h2></li>
+</ol>
+<ul>
+<li>express对于没有设定的请求路径，默认返回<code>Can not get xxx</code></li>
+<li>如果想要定制404，需要通过中间件配置,只需要在自己的路由之后增加一个<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//所有未处理的请求都会跑到这里</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/29/npm/" rel="prev" title="npm">
+      <i class="fa fa-chevron-left"></i> npm
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/29/CRUD/" rel="next" title="CRUD">
+      CRUD <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本使用"><span class="nav-number">1.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在express中使用art-template模板引擎"><span class="nav-number">2.</span> <span class="nav-text">在express中使用art-template模板引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本使用-1"><span class="nav-number">2.1.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#express中实现留言板"><span class="nav-number">2.2.</span> <span class="nav-text">express中实现留言板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原生语言实现"><span class="nav-number">2.2.1.</span> <span class="nav-text">原生语言实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化版"><span class="nav-number">2.2.2.</span> <span class="nav-text">优化版</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理定制404页面"><span class="nav-number">2.3.</span> <span class="nav-text">处理定制404页面</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Poetry Tan</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Poetry Tan</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
