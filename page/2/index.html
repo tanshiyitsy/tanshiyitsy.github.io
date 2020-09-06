@@ -156,6 +156,298 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tanshiyitsy.github.io/2020/07/29/node%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Poetry Tan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懒虫小谭的乱七八糟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/29/node%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E7%82%B9/" class="post-title-link" itemprop="url">node基本知识点</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-29 16:10:58" itemprop="dateCreated datePublished" datetime="2020-07-29T16:10:58-04:00">2020-07-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-09-06 08:59:31" itemprop="dateModified" datetime="2020-09-06T08:59:31-04:00">2020-09-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/node/" itemprop="url" rel="index"><span itemprop="name">node</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="node原生语言构建web服务器"><a href="#node原生语言构建web服务器" class="headerlink" title="node原生语言构建web服务器"></a>node原生语言构建web服务器</h1><h2 id="服务器作用："><a href="#服务器作用：" class="headerlink" title="服务器作用："></a>服务器作用：</h2><ul>
+<li>提供数据服务</li>
+<li>发请求</li>
+<li>接收请求</li>
+<li>处理请求</li>
+<li>发送响应<br><font color=red>一次请求对应一次响应，只有一个res.end()</font><h2 id="构建服务器"><a href="#构建服务器" class="headerlink" title="构建服务器"></a>构建服务器</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)             <span class="comment">// 引入http核心模块</span></span><br><span class="line"><span class="keyword">var</span> server = http.createServer()        <span class="comment">//该方法创建了一个web服务器，返回server实例</span></span><br><span class="line">server.on(<span class="string">'request'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">request, response</span>)</span>&#123; </span><br><span class="line">    <span class="comment">// 注册request请求事件，当客户端请求过来，触发request事件，执行回调函数</span></span><br><span class="line">    <span class="comment">// 参数1:request，请求对象，用于获取客户端的请求信息，如请求路径</span></span><br><span class="line">    <span class="comment">// 参数2:response,响应对象，用于给客户端发送响应信息</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'收到客户端的请求了，请求路径为：'</span> + request.url)</span><br><span class="line">    <span class="comment">// write用于给客户端发送响应数据，write可以使用多次，必须用end关闭，否则客户端一直等待</span></span><br><span class="line">    response.write(<span class="string">'hello'</span>)</span><br><span class="line">    response.write(<span class="string">'node.js'</span>)</span><br><span class="line">    response.end()</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 绑定端口号, 启动服务器</span></span><br><span class="line">server.listen(<span class="number">3000</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'服务器启动成功，可以通过127.0.0.1:3000访问‘)</span></span><br><span class="line"><span class="string">&#125;)</span></span><br></pre></td></tr></table></figure>
+<h2 id="验证方法"><a href="#验证方法" class="headerlink" title="验证方法"></a>验证方法</h2></li>
+<li>验证方法：浏览器中输入127.0.0.1:3000</li>
+<li><font color=red>响应内容只能是字符串或者二进制数据(Buffer)，<code>数字</code>，<code>对象</code>，<code>布尔值</code>，<code>数组</code>均不行</font></li>
+<li><font color=green>所以通过JSON.Sstringify()将参数转换为数组</font></li>
+<li><font color=green>JSON.parse()则相反</font></li>
+</ul>
+<h1 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h1><h2 id="模块概念"><a href="#模块概念" class="headerlink" title="模块概念"></a>模块概念</h2><ul>
+<li>node一共三种模块<ol>
+<li>内置的核心模块:如fs,http,path,os等，通过<code>require</code>引入</li>
+<li>自定义模块</li>
+<li>第三方模块(如art-template,需要通过npm进行安装) </li>
+</ol>
+</li>
+<li>核心模块本质是编译过后的<code>二进制文件</code></li>
+<li>第三方模块npm安装后会多出node_modules文件夹, 所以加载第三方模块的步骤<ol>
+<li>找到node_modules目录</li>
+<li>找node_modules/art-template目录</li>
+<li>找node_modules/art-template/package.json文件</li>
+<li>找node_modules/art-template/package.json文件中的<code>main</code>属性（main属性中记录了art-template的<code>入口模块</code>）</li>
+<li>如果package.json文件不存在，或者没有main属性，默认加载node_modules/art-template/目录下的<code>index.js</code>文件</li>
+<li>如果上述条件均不成立，那么进入上一级目录中的node_modules查找，<font color=green>直至查找至根目录</font>如果未找到，则报错<code>&quot;can not find module xxx&quot;</code></li>
+</ol>
+</li>
+<li>引入模块示例<br>b.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'b执行了’);</span></span><br></pre></td></tr></table></figure>
+a.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'a start'</span>)</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'./b.js'</span>)        </span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'a end'</span>)</span><br></pre></td></tr></table></figure>
+引入模块时相对路径必须加<code>./</code>,不然会被当成核心模块或者第三方模块，后缀<code>.js</code>可以省略；<br>读文件时的./可以省略<br>输出<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a start</span><br><span class="line">b执行了</span><br><span class="line">a end</span><br></pre></td></tr></table></figure>
+node中没有全局作用域，只有模块作用域（只在本文件内有用）,模块间默认封闭<h2 id="require作用"><a href="#require作用" class="headerlink" title="require作用"></a>require作用</h2></li>
+</ul>
+<ol>
+<li>引入模块</li>
+<li>返回exports对象，exports默认为{}<br>exports是个对象，可以解决变量命名空间冲突的问题<br>如<br>b.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="string">'hello'</span></span><br><span class="line">exports.foo = <span class="string">'hello'</span></span><br><span class="line">exports.add = <span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+a.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ret = <span class="built_in">require</span>(<span class="string">'./b.js'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(ret.foo)</span><br><span class="line"><span class="built_in">console</span>.log(ret.add(<span class="number">1</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+输出<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hello</span><br><span class="line">3</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>如果某个模块需要直接导出某个成员，而不是通过挂载的方式，那么只能用下面这种方法：<br>b.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = add</span><br></pre></td></tr></table></figure>
+a.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fooObj = <span class="built_in">require</span>(<span class="string">'./b.js'</span>)    <span class="comment">// fooObj就等于add方法 </span></span><br><span class="line"><span class="built_in">console</span>.log(fooObj(<span class="number">1</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure></li>
+<li>不可以直接exports = add，<font color=red>这样exports的引用变了,断开了和module.exports之间的引用</font>, 而返回的是<code>module.exports</code></li>
+<li>同理，给module.exports重新赋值也断开了和exports之间的引用</li>
+<li>node中，每个模块内部都有一个module对象和exports对象，exports默认为空<br>默认代码开始有：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">module</span> = &#123;</span><br><span class="line">    exports: &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">exports = <span class="built_in">module</span>.exports   <span class="comment">// 为简化编程，二者建立同一个引用关系</span></span><br></pre></td></tr></table></figure>
+默认代码后面有:<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="built_in">module</span>.exports</span><br></pre></td></tr></table></figure></li>
+<li>remote.address, remote.port是访问服务器的客户端的IP：port</li>
+</ul>
+<h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><ul>
+<li>模块化概念<ul>
+<li>具有文件作用域</li>
+<li>具有通信规则（可以加载，导出）</li>
+</ul>
+</li>
+<li>优先从缓存加载<br>如：<br>main.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">'./a.js'</span>)</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'./b.js'</span>)       <span class="comment">// 这一句不会被执行，但是可以直接从缓存中拿到 b里面的接口对象</span></span><br></pre></td></tr></table></figure>
+a.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'a被加载了'</span>)</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'./b.js'</span>)</span><br></pre></td></tr></table></figure>
+b.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'b被加载了'</span>)</span><br></pre></td></tr></table></figure>
+实际输出<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a被加载了</span><br><span class="line">b被加载了    <span class="comment">// 虽然多次被require，但是只输出一次，因为性能 ，避免重复加载</span></span><br></pre></td></tr></table></figure></li>
+<li>JS天生<code>不支持</code>模块化, Node环境中对JS进行了特殊的模块化支持，被叫做<code>CommonJS</code></li>
+<li>浏览器中也可以像node中的模块一样进行编程<ul>
+<li><code>&lt;script&gt;</code>标签来引用加载</li>
+<li>require.js 第三方库，术语 AMD</li>
+<li>sea.js   第三方库  术语CMD<br>无论是commonJS，AMD，CMD，UMD，ES6的modules官方规范，都是为了解决JS的模块化问题</li>
+<li>commonJS，AMD，CMD是民间搞出来的</li>
+<li>ES是官方规范定义</li>
+<li>所以ES6发布了新的官方标准，即语言天生可以支持模块化；但是虽然标准发布了，很多JS运行环境还不支持</li>
+</ul>
+</li>
+</ul>
+<h1 id="Content-type"><a href="#Content-type" class="headerlink" title="Content-type"></a>Content-type</h1><ul>
+<li>服务端返回的数据是<code>utf-8</code>编码，所以中文也支持</li>
+<li>但是浏览器不知道是utf-8,会按照当前操作系统的默认方式进行解码，中文操作系统默认是<code>gbk</code>编码，所以中文会乱码<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server.on(<span class="string">'request'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    res.setHeader(<span class="string">'Content-Type'</span>,<span class="string">'text/plain;charset=utf-8'</span>)  <span class="comment">// 可看官方文档</span></span><br><span class="line">    res.send(<span class="string">'世界'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+text/plain:表示普通文本<br>text/html:会对标签进行解析渲染<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (url === <span class="string">'/'</span>)&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (url === <span class="string">'/a'</span>)&#123;</span><br><span class="line">    fs.readFile(<span class="string">'resource/a.html'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (err)&#123;</span><br><span class="line">            res.setHeader(<span class="string">'Content-Type'</span>,<span class="string">'text/plain;charset=utf-8'</span>)</span><br><span class="line">            res.end(<span class="string">'文件读取失败，稍后重试'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            res.setHeader(<span class="string">'Content-Type'</span>,<span class="string">'text/html;charset=utf-8'</span>)</span><br><span class="line">            res.send(data)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+不同资源对应的content-type不一样，可在<a href="https://tool.oschina.net/commons" target="_blank" rel="noopener">网址</a>查看;<strong>图片可以不用指定编码</strong>，一般只有字符数据需要编码</li>
+</ul>
+<h1 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h1><ul>
+<li><code>art-template</code>不仅可以在浏览器中使用，也可以在node中使用，是js引擎<br>参考官方文档下载方式</li>
+<li>:是`mustache`语法，八字胡语法</li>
+<li>html中这样使用:<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"node_modules/art-template/lib/template-web.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/template"</span> <span class="attr">id</span>=<span class="string">"tpl"</span>&gt;</span></span><br><span class="line"><span class="handlebars"><span class="xml">我叫</span><span class="template-variable">&#123;&#123;name&#125;&#125;</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">我今年</span><span class="template-variable">&#123;&#123;age&#125;&#125;</span><span class="xml">岁了</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="keyword">var</span> ret = template(<span class="string">'tpl'</span>,&#123;</span></span><br><span class="line"><span class="actionscript">    name:<span class="string">"Jack"</span>,</span></span><br><span class="line">    age:13</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>node中使用模版引擎<br>tpl.html<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>我叫&#123;&#123;name&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>我今年&#123;&#123;age&#125;&#125;岁了<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+a.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> template = <span class="built_in">require</span>(<span class="string">'art-template'</span>)</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line">fs.readFile(<span class="string">'./tlp.html'</span>,<span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> ret = template.render(data.toString(),&#123;</span><br><span class="line">            name: <span class="string">"Jack"</span>,</span><br><span class="line">            age:<span class="number">13</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>服务端渲染：在服务端使用模板引擎,一次性返回给客户端页面+数据</li>
+<li>客户端渲染：第一次从服务器拿到页面，从上到下依次执行，当发现有异步代码时，第二次从服务器拿数据，然后解析渲染</li>
+<li>右键–&gt;查看网页源代码，如果可以查到元素，说明是服务端渲染，如果看不到，说明是客户端渲染</li>
+<li>点击下一页，整个页面刷新，则是服务端渲染；否则是客户端渲染</li>
+<li>客户端，异步渲染速度更快</li>
+<li>比如京东的商品是服务端渲染，评论是客户端渲染</li>
+<li>异步，ajax渲染的数据，爬虫爬取不到；客户端渲染的数据不利于SEO，搜索不到，所以如果商品采用客户端渲染，虽然速度更快，但是搜索引擎搜索不到</li>
+</ul>
+<h1 id="原生语言实现小型留言板"><a href="#原生语言实现小型留言板" class="headerlink" title="原生语言实现小型留言板"></a>原生语言实现小型留言板</h1><p>浏览器收到html文件响应内容后，从上往下进行解析，解析过程中如果发现<br><code>link</code>,<code>script</code>,<code>img</code>,<code>iframe</code>,<code>video</code>,<code>audio</code>等具有==src==或者==link==的href属性的时候，这些资源被称为静态资源，浏览器会自动的发请求<br>这里没有a链接，因为==a链接是由用户主动触发的==<br>app.js(主文件)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'./fs'</span>)</span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line">http</span><br><span class="line">.server(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    res.end(<span class="string">'hello'</span>)</span><br><span class="line">    url = req.url</span><br><span class="line">    if (url.indexOf('/public') == 0)&#123; # 以public开头的url</span><br><span class="line">        <span class="comment">// 这里将url拼接成./的相对路径形式，资源放在public目录下</span></span><br><span class="line">        fs.readFile(<span class="string">'.'</span>+url,<span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>)</span>&#123;</span><br><span class="line">            </span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).listen(<span class="number">3000</span>, funciton ()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'running......'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>index.html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">'/public/css/bootstrap.css'</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>浏览器解析到这行代码时会自动拼接成<code>http://domain/public/css/bootstrap.css</code>的请求</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> comments = [</span><br><span class="line">&#123;</span><br><span class="line">    name: <span class="string">'张三'</span>,</span><br><span class="line">    message: <span class="string">'dgsgfhgfd'</span>,</span><br><span class="line">    datetime: <span class="string">'2020-07-19'</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    name: <span class="string">'李四'</span>,</span><br><span class="line">    message: <span class="string">'dgsfgfh'</span>,</span><br><span class="line">    datetime: <span class="string">'2020-06-13'</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    name: <span class="string">'王麻子'</span>,</span><br><span class="line">    message: <span class="string">'dfsgds'</span>,</span><br><span class="line">    datetime: <span class="string">'2020-07-12'</span></span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line"><span class="keyword">var</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>)</span><br><span class="line"><span class="comment">// url.parse将路径转换为可操作的对象，通过query访问 </span></span><br><span class="line"><span class="keyword">var</span> parseObj = url.parse(<span class="string">'req.url'</span>, <span class="literal">true</span>)</span><br><span class="line"><span class="keyword">var</span> pathname = parseObj.pathname  <span class="comment">// 这里获取url中的路径，？之前</span></span><br><span class="line">res.end(<span class="built_in">JSON</span>.stringify(parse.query))</span><br><span class="line"><span class="keyword">var</span> comment = parse.query   <span class="comment">// 评论采用的get方法，会被拼接至URL上</span></span><br><span class="line">comments.push(comment)      <span class="comment">// 添加至数组末尾</span></span><br><span class="line">comments.unshift(comment)   <span class="comment">// 添加至数组开头</span></span><br></pre></td></tr></table></figure>
+<p>通过服务端设置重定向</p>
+<ol>
+<li>状态码设置为302</li>
+<li>响应头中设置location，告知客户端往哪儿重定向</li>
+<li>客户端发现状态码为302，会自动查找location</li>
+<li>用户可以看到浏览器自动跳转<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">res.statusCode = <span class="number">302</span></span><br><span class="line">res.setHeader(<span class="string">'Location'</span>, <span class="string">'/'</span>)</span><br><span class="line">res.end()   <span class="comment">// 发送完状态码和响应头，直接结束响应</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>301:永久重定向，浏览器会记住，第二次浏览器会直接发送请求到重定向后的地址</li>
+<li>302:临时重定向，浏览器不记忆 ，第二次浏览器还是会先请求服务器，再请求重定向后的地址</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tanshiyitsy.github.io/2020/07/29/node%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Poetry Tan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懒虫小谭的乱七八糟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/29/node%E6%A6%82%E8%BF%B0/" class="post-title-link" itemprop="url">node概述</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-29 15:19:15" itemprop="dateCreated datePublished" datetime="2020-07-29T15:19:15-04:00">2020-07-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-09-06 08:59:31" itemprop="dateModified" datetime="2020-09-06T08:59:31-04:00">2020-09-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/node/" itemprop="url" rel="index"><span itemprop="name">node</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p><a href="https://cnodes.org" target="_blank" rel="noopener">nodejs的中文社区</a></p>
+</blockquote>
+<h1 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h1><ol>
+<li>nodejs是 js runtime，用于<font color=red>解析执行js代码</font>，以前只有浏览器可以解析执行js代码</li>
+<li>node.js不是一门语言，不是库，也不是框架</li>
+<li>node是用来打开服务器黑盒的，除了node，其他的如java,PHP,Pyhton,Ruby,.Net都可以做到<br>具体的API操作可以直接查看官方文档<br>更多底层细节可参考：<blockquote>
+<p>《深入浅出nodejs》</p>
+</blockquote>
+<h1 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h1></li>
+<li>event-driven</li>
+<li>non-blocking I/O model,即异步</li>
+<li>lightweight and efficient <h1 id="能做什么？"><a href="#能做什么？" class="headerlink" title="能做什么？"></a>能做什么？</h1></li>
+<li>开发web服务器后台</li>
+<li>命令行工具（webpack,gulp,npm)<h1 id="安装及常用命令"><a href="#安装及常用命令" class="headerlink" title="安装及常用命令"></a>安装及常用命令</h1>查看版本号：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node --version</span><br></pre></td></tr></table></figure>
+执行文件:<u>文件不能用node.js命名</u><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node a.js</span><br></pre></td></tr></table></figure>
+<h1 id="基本知识点"><a href="#基本知识点" class="headerlink" title="基本知识点"></a>基本知识点</h1>小🌰<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(a)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li><font color=green>浏览器中的JS没有文件操作能力</font>；但是node中的js有,需要引入fs核心模块</li>
+<li>node不太关注样式，更关注服务端的操作<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line">fs.readFile(path, <span class="function"><span class="keyword">function</span> (<span class="params">error, data</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data.toString())          <span class="comment">// 因为data为16进制数据，不可读,所以需要toString()</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+第二个参数是回调函数，如果成功data有数据，error为null;如果失败，data为undifined, error有数据<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fs.write(peth, string, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (error)&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>npm是用nodejs开发的包管理工具，绝大多数的JS相关的包都存放在了npm上</li>
+<li>浏览器中的<code>JS == ES + BOM + DOM</code></li>
+<li>Node.js中的JS：<font color=green>只有ES，没有BOM，没有DOM</font></li>
+<li>Node主要就是使用ES，核心模块进行编程<h2 id="零散"><a href="#零散" class="headerlink" title="零散"></a>零散</h2>LTS:long time supprt<br>可以直接在浏览器的console 或者 node命令进行API测试<br>node中核心模块可以直接使用，不用require<br>node中字符串中涉及到\需要用\，因为会被转义<br>安装指定版本的包 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i jquery@1.11.0</span><br></pre></td></tr></table></figure>
+<h2 id="8-修改代码自动重启"><a href="#8-修改代码自动重启" class="headerlink" title="8. 修改代码自动重启"></a>8. 修改代码自动重启</h2>通过第三方命令行nodemon解决频繁修改代码后，频繁重启服务器的情况<br>安装：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --global nodemon</span><br><span class="line">nodemon --version     <span class="comment"># 验证是否安装成功</span></span><br></pre></td></tr></table></figure>
+使用：用<code>nodemon</code>代替原来的<code>node</code>，使用nodemon启动的服务，会自动监视代码的变化，然后重启服务器.<br>原来：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node app.js</span><br></pre></td></tr></table></figure>
+现在：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nodemon app.js</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://tanshiyitsy.github.io/2020/07/28/nginx/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -364,20 +656,20 @@ location指令</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
