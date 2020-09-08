@@ -156,6 +156,114 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tanshiyitsy.github.io/2020/09/08/vue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Poetry Tan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懒虫小谭的乱七八糟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/08/vue/" class="post-title-link" itemprop="url">vue</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-09-08 11:48:34 / Modified: 12:10:31" itemprop="dateCreated datePublished" datetime="2020-09-08T11:48:34-04:00">2020-09-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Vue基础"><a href="#Vue基础" class="headerlink" title="Vue基础"></a>Vue基础</h1><blockquote>
+<p>官网：<a href="https://cn.vuejs.org/" target="_blank" rel="noopener">https://cn.vuejs.org/</a><br>API文档：<a href="https://cn.vuejs.org/v2/api/" target="_blank" rel="noopener">https://cn.vuejs.org/v2/api/</a></p>
+</blockquote>
+<h2 id="是什么：渐进式JS框架"><a href="#是什么：渐进式JS框架" class="headerlink" title="是什么：渐进式JS框架"></a>是什么：渐进式JS框架</h2><ol>
+<li>渐进式：声明式渲染–&gt;组件系统 –&gt; 客户端路由 –&gt; 集中式状态管理–&gt;项目构建</li>
+<li>JS框架：提供基础性服务</li>
+<li>库和框架概念<ul>
+<li>库以提供API为主，比如jQuery</li>
+<li>框架是提供基础性的服务</li>
+<li>但是目前二者并没有怎么区分</li>
+</ul>
+</li>
+</ol>
+<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><ol>
+<li>Vue基本使用步骤：  <ol>
+<li>提供标签用于填充数据</li>
+<li>引入vue.js库文件（去官网上下载vue.js文件，然后放在工程目录文件js/下</li>
+<li>使用vue的语法实现功能了</li>
+<li>把vue提供的数据填充至标签里面<br>相较于原生js,和jquery的优点：不需要操作DOM了</li>
+</ol>
+</li>
+<li>Vue代码运行原理：<br>编译过程：<code>Vue代码-----（Vue框架）----&gt;原生代码</code></li>
+<li>使用实例<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--1. 提供标签--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--4. 插入数据，语法结构：插值表达式--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--2. 引入vue.js库文件--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"js/vue.js"</span>&gt;</span></span><br><span class="line"><span class="actionscript">		<span class="comment">// 3. 使用vue的语法实现功能</span></span></span><br><span class="line"><span class="actionscript">		<span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">			el:<span class="string">'#app'</span>,  <span class="comment">// id前加#，因为这是一个标准的id选择器</span></span></span><br><span class="line">			data:&#123;</span><br><span class="line"><span class="actionscript">				msg: <span class="string">'Hello,I am the data'</span></span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>差值表达式，两个大括号<ol>
+<li>将数据插入HTML中 </li>
+<li>支持基本的计算（符合js语法的都可）</li>
+</ol>
+</li>
+<li>new一个vue实例，参数是一个对象，里面有两个关键属性el,data<ol>
+<li>el == element 元素的挂载位置，用于表明在哪个位置填充数据，可以是CSS选择器，或者DOM元素</li>
+<li>data：模型数据，是一个对象，表明填充的业务数据</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://tanshiyitsy.github.io/2020/09/06/%E5%88%B7%E7%AE%97%E6%B3%95%E9%A2%98%E7%9A%84%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -179,10 +287,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-09-06 09:48:15 / Modified: 09:51:07" itemprop="dateCreated datePublished" datetime="2020-09-06T09:48:15-04:00">2020-09-06</time>
+              <time title="Created: 2020-09-06 09:48:15" itemprop="dateCreated datePublished" datetime="2020-09-06T09:48:15-04:00">2020-09-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-09-08 12:11:45" itemprop="dateModified" datetime="2020-09-08T12:11:45-04:00">2020-09-08</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -217,7 +331,10 @@
 </li>
 </ul>
 <ul>
-<li>二叉搜索树：左边的都小于根节点，右边的都大于根节点</li>
+<li><p>二叉搜索树：左边的都小于根节点，右边的都大于根节点</p>
+</li>
+<li><p>python -1 &amp; 0xffff = 65536<br><code>原因</code>：python中没有int,long,python原本数据很长，为了把<br>数字控制在32位内，所以与上0xfffffff，<font color=red>前面部分不要了，包括符号位，所以达到了去负号的作用</font></p>
+</li>
 </ul>
 
       
@@ -1181,112 +1298,6 @@ index.html 模版<figure class="highlight plain"><table><tr><td class="gutter"><
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://tanshiyitsy.github.io/2020/07/29/npm/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Poetry Tan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="懒虫小谭的乱七八糟">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/29/npm/" class="post-title-link" itemprop="url">npm</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-29 17:28:58" itemprop="dateCreated datePublished" datetime="2020-07-29T17:28:58-04:00">2020-07-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-06 08:59:31" itemprop="dateModified" datetime="2020-09-06T08:59:31-04:00">2020-09-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/node/" itemprop="url" rel="index"><span itemprop="name">node</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h1><ol>
-<li>node package manager<blockquote>
-<p>网站：npmjs.com</p>
-</blockquote>
-</li>
-<li>第二层含义是：命令行工具<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm --version  <span class="comment"># 查看版本</span></span><br><span class="line">npm install --global npm   <span class="comment"># 升级自己</span></span><br></pre></td></tr></table></figure>
-<h1 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h1></li>
-</ol>
-<ul>
-<li>是包说明文件</li>
-<li>该文件可以通过<code>npm init</code>方式初始化出来<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install art-template --save</span><br><span class="line">或者</span><br><span class="line">npm install --save art-template  <span class="comment"># --save选项会在package.json文件里记录安装的包信息</span></span><br></pre></td></tr></table></figure>
-如果不小心将node_modules文件夹删除了，package.json会记录项目依赖的第三方包，可以直接通过<code>npm install</code>命令安装package.json文件里dependency的<code>所有</code>依赖项</li>
-</ul>
-<h1 id="package-json和package-lock-json"><a href="#package-json和package-lock-json" class="headerlink" title="package.json和package-lock.json"></a>package.json和package-lock.json</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
-<li><code>npm5</code>以前没有package-lock.json这个文件，npm5以后加入的</li>
-<li>安装包时，会自动<code>创建</code>或者<code>更新</code>package-lock.json这个文件</li>
-<li>npm5以后版本安装包，不需要加<code>--save</code>参数，会自动保存依赖信息</li>
-<li>package-lock.json会保存node_modules中<font color=red>所有包</font>的信息（版本、下载地址等）,包括依赖的依赖<ul>
-<li>这样的话，npm install的速度会提升</li>
-<li>lock可以用于<code>锁定版本</code>，防止自动升级新版。</li>
-<li>比如package.json中jquery的版本为<code>^1.11.1</code>,下载时会下载高于1.11.1版本的最新版本的包，而lock文件，指定多少版本，就是多少版本的</li>
-</ul>
-</li>
-</ul>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br><span class="line">    npm init -y <span class="comment"># 跳过向导，直接生成</span></span><br><span class="line">npm install     <span class="comment"># 下载package.json文件里面的依赖项</span></span><br><span class="line">npm install package_name</span><br><span class="line">npm install package_name --save   <span class="comment"># 下载并保存依赖项 </span></span><br><span class="line">    简写：npm i -S package_name</span><br><span class="line">npm uninstall package_name    <span class="comment"># 只删除，如果有依赖项依然保存</span></span><br><span class="line">npm uninstall --save package_name   <span class="comment"># 删除同时删除依赖信息</span></span><br><span class="line">    简写：npm un -S package_name</span><br><span class="line">npm --<span class="built_in">help</span></span><br><span class="line">npm uninstall --<span class="built_in">help</span>  <span class="comment"># 查看命令uninstall的帮助</span></span><br><span class="line">npm config list    <span class="comment"># 查看npm配置信息</span></span><br></pre></td></tr></table></figure>
-<p>npm的存储包文件的服务器在国外，有时候被墙，速度非常慢<br>镜像就是备份的意思<br>安装淘宝的cnpm</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --global cnpm    # 在任意目录下执行均可，--global表示全局安装</span><br></pre></td></tr></table></figure>
-<p>安装时把npm换成cnpm</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这里是国外服务器，速度较慢</span></span><br><span class="line">npm install jquery</span><br><span class="line"><span class="comment"># 这里是从淘宝镜像下载，淘宝十分钟和国外同步一次</span></span><br><span class="line">cnpm install jquery</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1356,14 +1367,14 @@ index.html 模版<figure class="highlight plain"><table><tr><td class="gutter"><
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
