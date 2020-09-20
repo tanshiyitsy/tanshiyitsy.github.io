@@ -11,7 +11,7 @@ tags:
 > 官网：https://cn.vuejs.org/  
 > API文档：https://cn.vuejs.org/v2/api/
 
-## 是什么：渐进式JS框架
+是什么：渐进式JS框架
 1. 渐进式：声明式渲染-->组件系统 --> 客户端路由 --> 集中式状态管理-->项目构建
 2. JS框架：提供基础性服务
 2. 库和框架概念
@@ -60,3 +60,57 @@ tags:
 	- new一个vue实例，参数是一个对象，里面有两个关键属性el,data
 		1.  el == element 元素的挂载位置，用于表明在哪个位置填充数据，可以是CSS选择器，或者DOM元素
 		2.  data：模型数据，是一个对象，表明填充的业务数据
+
+## 前端渲染
+概念：把数据填充到HTML中
+模板+数据（后端得到） ===前端渲染===>  静态HTML内容
+前端渲染方式
+1. 原生js拼接字符串  
+有局限性，不同开发人员代码风格差别大，不好维护
+2. 使用前端模板引擎  
+art-template，开发人员有了编写标准，大家都遵循同样规范写代码，方便维护
+缺点：没有专门提供事件机制
+因此如果有事件需要处理时，需要渲染完成后，再通过原生js方式
+3. vue特有的模板语法
+	1. 插值表达式
+	2. 指令
+	3. 事件绑定（绑定就是处理的意思）
+	4. 属性绑定
+	5. 样式绑定
+	6. 分支循环结构
+
+## vue的指令
+1. vcloak
+
+作用：解决`加载问题`
+加载问题：插值表达式存在“闪动”，频繁刷新浏览器时，会出现花括号先出现，然后迅速替换成内容的现象  使用v-cloak之后：直到编译结束，插值表达式不会显示
+解决问题的原理：先隐藏，替换好值后再显示最终的结果；先通过样式隐藏内容，然后在内存中进行值的替换，替换好后再显示结果
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		/*1. 提供样式（css）, 方括号表示属性选择器*/
+		[v-cloak]{  
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<!--2. 插值表达式中添加v-cloak指令-->
+		<div v-cloak>{{msg}}</div>
+	</div>
+	<script type="text/javascript src="js/vue.js></script>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				msg: 'Hello world!'
+			}
+		})
+	</script>
+</body>
+</html>
+```
