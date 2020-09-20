@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"tanshiyitsy.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Vue基础 官网：https:&#x2F;&#x2F;cn.vuejs.org&#x2F;API文档：https:&#x2F;&#x2F;cn.vuejs.org&#x2F;v2&#x2F;api&#x2F;  是什么：渐进式JS框架 渐进式：声明式渲染–&gt;组件系统 –&gt; 客户端路由 –&gt; 集中式状态管理–&gt;项目构建 JS框架：提供基础性服务 库和框架概念 库以提供API为主，比如jQuery 框架是提供基础性的服务 但是目前二者并没有怎么区分">
+  <meta name="description" content="Vue基础 官网：https:&#x2F;&#x2F;cn.vuejs.org&#x2F;API文档：https:&#x2F;&#x2F;cn.vuejs.org&#x2F;v2&#x2F;api&#x2F;  是什么：渐进式JS框架  渐进式：声明式渲染–&gt;组件系统 –&gt; 客户端路由 –&gt; 集中式状态管理–&gt;项目构建 JS框架：提供基础性服务 库和框架概念 库以提供API为主，比如jQuery 框架是提供基础性的服务 但是目前二者并没有怎么区分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue">
 <meta property="og:url" content="https://tanshiyitsy.github.io/2020/09/08/vue/index.html">
 <meta property="og:site_name" content="懒虫小谭的乱七八糟">
-<meta property="og:description" content="Vue基础 官网：https:&#x2F;&#x2F;cn.vuejs.org&#x2F;API文档：https:&#x2F;&#x2F;cn.vuejs.org&#x2F;v2&#x2F;api&#x2F;  是什么：渐进式JS框架 渐进式：声明式渲染–&gt;组件系统 –&gt; 客户端路由 –&gt; 集中式状态管理–&gt;项目构建 JS框架：提供基础性服务 库和框架概念 库以提供API为主，比如jQuery 框架是提供基础性的服务 但是目前二者并没有怎么区分">
+<meta property="og:description" content="Vue基础 官网：https:&#x2F;&#x2F;cn.vuejs.org&#x2F;API文档：https:&#x2F;&#x2F;cn.vuejs.org&#x2F;v2&#x2F;api&#x2F;  是什么：渐进式JS框架  渐进式：声明式渲染–&gt;组件系统 –&gt; 客户端路由 –&gt; 集中式状态管理–&gt;项目构建 JS框架：提供基础性服务 库和框架概念 库以提供API为主，比如jQuery 框架是提供基础性的服务 但是目前二者并没有怎么区分">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-08T15:48:34.000Z">
-<meta property="article:modified_time" content="2020-09-08T16:10:31.766Z">
+<meta property="article:modified_time" content="2020-09-20T14:22:30.634Z">
 <meta property="article:author" content="Poetry Tan">
 <meta property="article:tag" content="前端">
 <meta name="twitter:card" content="summary">
@@ -184,10 +184,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-09-08 11:48:34 / Modified: 12:10:31" itemprop="dateCreated datePublished" datetime="2020-09-08T11:48:34-04:00">2020-09-08</time>
+              <time title="Created: 2020-09-08 11:48:34" itemprop="dateCreated datePublished" datetime="2020-09-08T11:48:34-04:00">2020-09-08</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-09-20 10:22:30" itemprop="dateModified" datetime="2020-09-20T10:22:30-04:00">2020-09-20</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -216,7 +222,8 @@
         <h1 id="Vue基础"><a href="#Vue基础" class="headerlink" title="Vue基础"></a>Vue基础</h1><blockquote>
 <p>官网：<a href="https://cn.vuejs.org/" target="_blank" rel="noopener">https://cn.vuejs.org/</a><br>API文档：<a href="https://cn.vuejs.org/v2/api/" target="_blank" rel="noopener">https://cn.vuejs.org/v2/api/</a></p>
 </blockquote>
-<h2 id="是什么：渐进式JS框架"><a href="#是什么：渐进式JS框架" class="headerlink" title="是什么：渐进式JS框架"></a>是什么：渐进式JS框架</h2><ol>
+<p>是什么：渐进式JS框架</p>
+<ol>
 <li>渐进式：声明式渲染–&gt;组件系统 –&gt; 客户端路由 –&gt; 集中式状态管理–&gt;项目构建</li>
 <li>JS框架：提供基础性服务</li>
 <li>库和框架概念<ul>
@@ -250,7 +257,25 @@
 </ul>
 </li>
 </ol>
-
+<h2 id="前端渲染"><a href="#前端渲染" class="headerlink" title="前端渲染"></a>前端渲染</h2><p>概念：把数据填充到HTML中<br>模板+数据（后端得到） ===前端渲染===&gt;  静态HTML内容<br>前端渲染方式</p>
+<ol>
+<li>原生js拼接字符串<br>有局限性，不同开发人员代码风格差别大，不好维护</li>
+<li>使用前端模板引擎<br>art-template，开发人员有了编写标准，大家都遵循同样规范写代码，方便维护<br>缺点：没有专门提供事件机制<br>因此如果有事件需要处理时，需要渲染完成后，再通过原生js方式</li>
+<li>vue特有的模板语法<ol>
+<li>插值表达式</li>
+<li>指令</li>
+<li>事件绑定（绑定就是处理的意思）</li>
+<li>属性绑定</li>
+<li>样式绑定</li>
+<li>分支循环结构</li>
+</ol>
+</li>
+</ol>
+<h2 id="vue的指令"><a href="#vue的指令" class="headerlink" title="vue的指令"></a>vue的指令</h2><ol>
+<li>vcloak</li>
+</ol>
+<p>作用：解决<code>加载问题</code><br>加载问题：插值表达式存在“闪动”，频繁刷新浏览器时，会出现花括号先出现，然后迅速替换成内容的现象  使用v-cloak之后：直到编译结束，插值表达式不会显示<br>解决问题的原理：先隐藏，替换好值后再显示最终的结果；先通过样式隐藏内容，然后在内存中进行值的替换，替换好后再显示结果</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span></span><br><span class="line"><span class="css">		<span class="comment">/*1. 提供样式（css）, 方括号表示属性选择器*/</span></span></span><br><span class="line"><span class="css">		<span class="selector-attr">[v-cloak]</span>&#123;  </span></span><br><span class="line">			display: none;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--2. 插值表达式中添加v-cloak指令--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">v-cloak</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript src="</span><span class="attr">js</span>/<span class="attr">vue.js</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="actionscript">		<span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">			el: <span class="string">'#app'</span>,</span></span><br><span class="line">			data: &#123;</span><br><span class="line"><span class="actionscript">				msg: <span class="string">'Hello world!'</span></span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;)</span><br><span class="line">	<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -330,7 +355,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue基础"><span class="nav-number">1.</span> <span class="nav-text">Vue基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#是什么：渐进式JS框架"><span class="nav-number">1.1.</span> <span class="nav-text">是什么：渐进式JS框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本使用"><span class="nav-number">1.2.</span> <span class="nav-text">基本使用</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue基础"><span class="nav-number">1.</span> <span class="nav-text">Vue基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本使用"><span class="nav-number">1.1.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端渲染"><span class="nav-number">1.2.</span> <span class="nav-text">前端渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue的指令"><span class="nav-number">1.3.</span> <span class="nav-text">vue的指令</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
