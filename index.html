@@ -190,14 +190,87 @@
       
 
         
-          
+          <h1 id="区块链简介"><a href="#区块链简介" class="headerlink" title="区块链简介"></a>区块链简介</h1><ul>
+<li>比特币和以太坊都是加密货币（crypto-currency)</li>
+<li>比特币是基于区块链的一种加密货币</li>
+<li>2017年以太坊出现</li>
+<li>智能合约：solidity源代码</li>
+</ul>
+<h1 id="BTC的密码学原理"><a href="#BTC的密码学原理" class="headerlink" title="BTC的密码学原理"></a>BTC的密码学原理</h1><p>虽然叫加密货币，实际上区块链上的所有交易内容都是公开的，比如账户地址、转账金额等<br>比特币主要使用到了密码学中的两个原理：<code>hash</code>和<code>签名</code></p>
+<h2 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h2><p>密码学中的hash有两个重要性质</p>
+<h3 id="collision-resistance"><a href="#collision-resistance" class="headerlink" title="collision resistance"></a>collision resistance</h3><ul>
+<li>作用：解决hash 碰撞问题  </li>
+</ul>
+<blockquote>
+<p>hash碰撞: </p>
+</blockquote>
+<p>指不同的输入，映射到hash表中同一个位置；即输入x≠y,但是H(x)=H(y)  </p>
+<p>一般情况下，hash碰撞 <code>不可避免</code> ，因为输入空间 &gt;&gt; 输出空间<br>这里的collision resistance 不是说没有了hash碰撞，而是指没有办法认为制造hash碰撞。比如已知输入x,hash值为H(x),没有办法人为找到输入y，使得H(x)=H(y)</p>
+<blockquote>
+<p>brute-force:暴力破解，遍历所有的输入空间，找到符合条件的y,<code>需要算力支持</code>  </p>
+</blockquote>
+<ul>
+<li>在区块链中作用<br>制造数字签名：<code>因为message内容一旦更改，hash的值就会改</code></li>
+</ul>
+<p><font color="red">没有哪个hash函数可以从理论上证明是collision resistance的，我们说的collision resistance更多的是从经验上来说的  </font><br>比如：MD5曾经很流行，但是现在已经知道怎么制造人为hash碰撞了</p>
+<h3 id="hiding"><a href="#hiding" class="headerlink" title="hiding"></a>hiding</h3><ul>
+<li>hiding：hash函数的计算过程单向、不可逆<br>因此不会泄露输入的相关信息<br>hiding成立的前提是：<code>输入空间足够大</code></li>
+<li>作用：  和collision resistance结合在一起，digital commitment，或者有的书叫做digital equivalent of a sealed envelope<br>  适用于预测结果不能被提前公开的情况<blockquote>
+<p>比如有个人预测第二天股票涨停情况，需要验证他的预测结果，但是我们不能提前把预测结果公开，因为会影响股票本来的走势<br>  用hiding的话,可以把预测结果hash一下，因为不可逆，所以不知道预测结果，第二天结果出来再hash，比较</p>
+</blockquote>
+</li>
+</ul>
+<p>比特币除了上述两个性质外，还用了hash的第三个性质：<code>puzzle friendly</code></p>
+<h3 id="puzzle-friendly"><a href="#puzzle-friendly" class="headerlink" title="puzzle friendly"></a>puzzle friendly</h3><p>事先不知道哪个输入可以hash得到满足条件的hash值（比如要求结果256位，前k位都是0），只能一个一个试，没有捷径  </p>
+<blockquote>
+<p>difficult to solve， but easy toverify，解决很难，但是验证很简单</p>
+</blockquote>
+<p>比特币中用的hash函数：SHA-256（Secure Hash Algorithm），满足上述三个性质:collision resistance、hiding、puzzle friendly</p>
+<h2 id="签名"><a href="#签名" class="headerlink" title="签名"></a>签名</h2><ul>
+<li><p>比特币中，创建一个账户，就是创建一个公私钥对：（public key， private key）<br>最早的加密体系只有对称加密  </p>
+<blockquote>
+<p>A,B进行通讯，但是通讯的网络有可能被窃听，因此A和B事先商量好密钥（encryption key）,A加密好内容发送给B，B收到内容后进行解密。因为过程中加密、解密用的同一个密钥，因此是对称的加密体系。  </p>
+</blockquote>
+<p>  弱点：前提是假设有某种安全的渠道能够把密钥分发给通讯的双方，因为不能把密钥以明文的形式在网络上传输<br>非对称加密：asymmetric encryption   algorithm<br>加密：公钥，解密：私钥；公钥私钥都是<font color="red">接受者</font>的<br>解决了对称加密中密钥分发不方便的问题<br>签名用的私钥，验证签名用的对应的公钥<br>产生相同的公私钥对的概率为1/2的256，比地球爆炸的概率还要低</p>
+</li>
+<li><p>比特币当中一般是对一个message取一个hash，然后对这个hash值进行签名</p>
+</li>
+</ul>
+<p><img src="/.io//blockchain%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B.png" alt="这是我的文字"></p>
+
         
       
     </div>
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">区块链</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/区块链//" class="article-tag-list-link color4">区块链</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/区块链/视频课程//" class="article-tag-list-link color5">视频课程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
@@ -1509,6 +1582,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">区块链</a>
               </li>
             
             <div class="clearfix"></div>
