@@ -156,6 +156,131 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://tanshiyitsy.github.io/2020/07/29/express/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Poetry Tan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懒虫小谭的乱七八糟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/29/express/" class="post-title-link" itemprop="url">express</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-29 18:10:06" itemprop="dateCreated datePublished" datetime="2020-07-29T18:10:06-04:00">2020-07-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-09-06 08:59:31" itemprop="dateModified" datetime="2020-09-06T08:59:31-04:00">2020-09-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/node/" itemprop="url" rel="index"><span itemprop="name">node</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>原生http不足以应对开发需求，所以需要使用框架加快开发效率，提高效率，使得代码高度统一<br>Node中有许多web开发框架，express就是其中一种</p>
+<blockquote>
+<p>官网首页：expressjs.com</p>
+</blockquote>
+<h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><p>step1:安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -S express</span><br></pre></td></tr></table></figure>
+<p>step2:引包</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br></pre></td></tr></table></figure>
+<p>step3:创建服务器应用程序，也就是原来的<code>http.createServer</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = express()</span><br><span class="line"><span class="comment">// 服务器收到GET请求/的时候，执行回调函数</span></span><br><span class="line">app.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    res.send(<span class="string">'hello,world'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="string">'/about'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req. res</span>)</span>&#123;</span><br><span class="line">    res.send('你好，世界')    # 中文该框架帮忙处理了</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 相当于原来的server.listen</span></span><br><span class="line">app.listen(<span class="number">3000</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'app is running at 3000'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>提供静态资源服务，公开指定目录，可以直接通过/public/xxx的方式访问public文件夹中的资源了<br>app.use(‘/public’,express.static(‘./public’))   # 开放public目录</p>
+<p>step4:基本路由<br>路由：有分发的意思，其实就是一张表，表里有具体的映射关系<br>请求方法+请求路径+处理函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app</span><br><span class="line">  .get(<span class="string">'/'</span>, funciton_name)</span><br><span class="line">  .post(<span class="string">'login'</span>, funciton_name)</span><br><span class="line">  .get(<span class="string">'billing'</span>, function_name)     <span class="comment">// 这个就可以被看为是一张路由表</span></span><br></pre></td></tr></table></figure>
+<p>静态文件处理：<br>app.use()的第一个参数是URL，浏览器访问时是第二个参数的别名，<br>./public目录下有login.html文件，下面表示以/public/开头时，去./public目录下找寻对应的文件<br>比如浏览器访问<code>xxx/public/login.html</code>就可以得到这个文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="string">'/public/'</span>, express.static(<span class="string">'./public/'</span>))</span><br><span class="line"><span class="comment">// 省略第一个参数，则访问时可以省略/public,浏览器只需要输入xxx/login.html,如果输入xxx/public/login.html则访问不到</span></span><br><span class="line">app.use(express.static(<span class="string">'./public/'</span>)) </span><br><span class="line"><span class="comment">// 比较特殊的,必须通过/a/login.html来访问文件public 文件夹里面的资源，a相当于是public的别名</span></span><br><span class="line">app.use(<span class="string">'/a/'</span>, express.static(<span class="string">'./public'</span>))</span><br></pre></td></tr></table></figure>
+<h1 id="在express中使用art-template模板引擎"><a href="#在express中使用art-template模板引擎" class="headerlink" title="在express中使用art-template模板引擎"></a>在express中使用<code>art-template</code>模板引擎</h1><h2 id="基本使用-1"><a href="#基本使用-1" class="headerlink" title="基本使用"></a>基本使用</h2><ol>
+<li>安装<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save atr-template</span><br><span class="line">npm install --save express-art-template</span><br></pre></td></tr></table></figure></li>
+<li>配置使用art-template<br>app.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="keyword">var</span> app = express()</span><br><span class="line">app.engine(<span class="string">'art'</span>, <span class="built_in">require</span>(<span class="string">'express-art-template'</span>）） <span class="comment">// 这里配置，第一个参数表示：当渲染以art结尾的文件时，使用art-template；</span></span><br><span class="line"><span class="comment">// express为response对象提供了一个方法：render</span></span><br><span class="line"><span class="comment">// render方法默认不可用，需要配置模版引擎才可使用</span></span><br><span class="line"><span class="comment">// res.render('html模板名',&#123;模板数据&#125;)；第一个参数不能写路径，默认会去项目中views目录下寻找，默认所有的视图文件都在views目录中</span></span><br><span class="line">app.get(<span class="string">'/'</span>, funciton(req, res)&#123;</span><br><span class="line">    res.render(<span class="string">'404.art'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="string">'/admin'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    res.render(<span class="string">'admin/index.html'</span>, &#123;</span><br><span class="line">        title: <span class="string">'管理系统'</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"># 如果想要修改render函数默认的views目录，可以</span><br><span class="line">app.set(<span class="string">'views'</span>, path)</span><br><span class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    res.send()    # send是express提供的，end是原生node提供的</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>这里用art 只是为了更好识别使用了art-template，可以自定义</li>
+<li>express-art-template：这个包专门用于express框架</li>
+<li>虽然外面不需要加载art-template包，但是也必须安装，因为express-art-template包依赖了art-template<br>index.html<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span> admin &#123;&#123; title &#125;&#125; <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="express中实现留言板"><a href="#express中实现留言板" class="headerlink" title="express中实现留言板"></a>express中实现留言板</h2><h3 id="原生语言实现"><a href="#原生语言实现" class="headerlink" title="原生语言实现"></a>原生语言实现</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    res.render(<span class="string">'index.html'</span>,&#123;</span><br><span class="line">        comments: comments</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="string">'/post'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    res.render(<span class="string">'post.html'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="string">'/pinglun'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> comment = req.query    <span class="comment">// 这个就是用户输入的内容，只能获取GET方法的表单内容</span></span><br><span class="line">    comments.unshift(comment)</span><br><span class="line">    res.redirect(<span class="string">'/'</span>) <span class="comment">//express封装的；等价于原生nodejs的res.statusCode = 302; res.setHeader('Location',  '/')</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="优化版"><a href="#优化版" class="headerlink" title="优化版"></a>优化版</h3><ul>
+<li>对于POST方法，express没有提供获取表单内容的API，必须使用插件（在express官网中, resources-&gt;middleware中可查看）</li>
+<li>凡是在浏览器输入地址回车，发送的都是GET请求</li>
+<li>POST需要使用<code>表单</code>或者<code>ajax请求</code></li>
+</ul>
+<ol>
+<li>安装<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save body-parser</span><br></pre></td></tr></table></figure></li>
+<li>配置<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 引包</span></span><br><span class="line"><span class="keyword">var</span> bodyParser = <span class="built_in">require</span>（<span class="string">'body-parser'</span>) </span><br><span class="line"><span class="comment">// 2. 配置</span></span><br><span class="line"><span class="comment">// 只要加入这个配置，则在req请求对象上会多出来一个属性：body</span></span><br><span class="line"><span class="comment">// 因此可以直接通过req.body 获取POST表单的请求实体数据了</span></span><br><span class="line">app.use(bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;))</span><br><span class="line"><span class="comment">// 3. 解析</span></span><br><span class="line">app.use(bodyParser.json())</span><br></pre></td></tr></table></figure>
+同一路径使用多次，但是<font color="#FF6A6A">不同的方法</font>请求<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">'/post'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    res.render(<span class="string">'post.html'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.post(<span class="string">'/post'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> comment = req.body    <span class="comment">// 获取POST的表单内容</span></span><br><span class="line">    comment.dateTime = <span class="string">'2020-07-24 10:34:23'</span></span><br><span class="line">    comments.unshift(comment)</span><br><span class="line">    res.redirect(<span class="string">'/'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="处理定制404页面"><a href="#处理定制404页面" class="headerlink" title="处理定制404页面"></a>处理定制404页面</h2></li>
+</ol>
+<ul>
+<li>express对于没有设定的请求路径，默认返回<code>Can not get xxx</code></li>
+<li>如果想要定制404，需要通过中间件配置,只需要在自己的路由之后增加一个<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//所有未处理的请求都会跑到这里</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://tanshiyitsy.github.io/2020/07/29/npm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -231,7 +356,7 @@
 <li><code>npm5</code>以前没有package-lock.json这个文件，npm5以后加入的</li>
 <li>安装包时，会自动<code>创建</code>或者<code>更新</code>package-lock.json这个文件</li>
 <li>npm5以后版本安装包，不需要加<code>--save</code>参数，会自动保存依赖信息</li>
-<li>package-lock.json会保存node_modules中<font color=red>所有包</font>的信息（版本、下载地址等）,包括依赖的依赖<ul>
+<li>package-lock.json会保存node_modules中<font color="red">所有包</font>的信息（版本、下载地址等）,包括依赖的依赖<ul>
 <li>这样的话，npm install的速度会提升</li>
 <li>lock可以用于<code>锁定版本</code>，防止自动升级新版。</li>
 <li>比如package.json中jquery的版本为<code>^1.11.1</code>,下载时会下载高于1.11.1版本的最新版本的包，而lock文件，指定多少版本，就是多少版本的</li>
@@ -325,12 +450,12 @@
 <li>发请求</li>
 <li>接收请求</li>
 <li>处理请求</li>
-<li>发送响应<br><font color=red>一次请求对应一次响应，只有一个res.end()</font><h2 id="构建服务器"><a href="#构建服务器" class="headerlink" title="构建服务器"></a>构建服务器</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)             <span class="comment">// 引入http核心模块</span></span><br><span class="line"><span class="keyword">var</span> server = http.createServer()        <span class="comment">//该方法创建了一个web服务器，返回server实例</span></span><br><span class="line">server.on(<span class="string">'request'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">request, response</span>)</span>&#123; </span><br><span class="line">    <span class="comment">// 注册request请求事件，当客户端请求过来，触发request事件，执行回调函数</span></span><br><span class="line">    <span class="comment">// 参数1:request，请求对象，用于获取客户端的请求信息，如请求路径</span></span><br><span class="line">    <span class="comment">// 参数2:response,响应对象，用于给客户端发送响应信息</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'收到客户端的请求了，请求路径为：'</span> + request.url)</span><br><span class="line">    <span class="comment">// write用于给客户端发送响应数据，write可以使用多次，必须用end关闭，否则客户端一直等待</span></span><br><span class="line">    response.write(<span class="string">'hello'</span>)</span><br><span class="line">    response.write(<span class="string">'node.js'</span>)</span><br><span class="line">    response.end()</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 绑定端口号, 启动服务器</span></span><br><span class="line">server.listen(<span class="number">3000</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'服务器启动成功，可以通过127.0.0.1:3000访问‘)</span></span><br><span class="line"><span class="string">&#125;)</span></span><br></pre></td></tr></table></figure>
+<li>发送响应<br><font color="red">一次请求对应一次响应，只有一个res.end()</font><h2 id="构建服务器"><a href="#构建服务器" class="headerlink" title="构建服务器"></a>构建服务器</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)             <span class="comment">// 引入http核心模块</span></span><br><span class="line"><span class="keyword">var</span> server = http.createServer()        <span class="comment">//该方法创建了一个web服务器，返回server实例</span></span><br><span class="line">server.on(<span class="string">'request'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">request, response</span>)</span>&#123; </span><br><span class="line">    <span class="comment">// 注册request请求事件，当客户端请求过来，触发request事件，执行回调函数</span></span><br><span class="line">    <span class="comment">// 参数1:request，请求对象，用于获取客户端的请求信息，如请求路径</span></span><br><span class="line">    <span class="comment">// 参数2:response,响应对象，用于给客户端发送响应信息</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'收到客户端的请求了，请求路径为：'</span> + request.url)</span><br><span class="line">    <span class="comment">// write用于给客户端发送响应数据，write可以使用多次，必须用end关闭，否则客户端一直等待</span></span><br><span class="line">    response.write(<span class="string">'hello'</span>)</span><br><span class="line">    response.write(<span class="string">'node.js'</span>)</span><br><span class="line">    response.end()</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 绑定端口号, 启动服务器</span></span><br><span class="line">server.listen(<span class="number">3000</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'服务器启动成功，可以通过127.0.0.1:3000访问‘)</span></span><br><span class="line"><span class="string">&#125;)</span></span><br></pre></td></tr></table></figure>
 <h2 id="验证方法"><a href="#验证方法" class="headerlink" title="验证方法"></a>验证方法</h2></li>
 <li>验证方法：浏览器中输入127.0.0.1:3000</li>
-<li><font color=red>响应内容只能是字符串或者二进制数据(Buffer)，<code>数字</code>，<code>对象</code>，<code>布尔值</code>，<code>数组</code>均不行</font></li>
-<li><font color=green>所以通过JSON.Sstringify()将参数转换为数组</font></li>
-<li><font color=green>JSON.parse()则相反</font></li>
+<li><font color="red">响应内容只能是字符串或者二进制数据(Buffer)，<code>数字</code>，<code>对象</code>，<code>布尔值</code>，<code>数组</code>均不行</font></li>
+<li><font color="green">所以通过JSON.Sstringify()将参数转换为数组</font></li>
+<li><font color="green">JSON.parse()则相反</font></li>
 </ul>
 <h1 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h1><h2 id="模块概念"><a href="#模块概念" class="headerlink" title="模块概念"></a>模块概念</h2><ul>
 <li>node一共三种模块<ol>
@@ -346,7 +471,7 @@
 <li>找node_modules/art-template/package.json文件</li>
 <li>找node_modules/art-template/package.json文件中的<code>main</code>属性（main属性中记录了art-template的<code>入口模块</code>）</li>
 <li>如果package.json文件不存在，或者没有main属性，默认加载node_modules/art-template/目录下的<code>index.js</code>文件</li>
-<li>如果上述条件均不成立，那么进入上一级目录中的node_modules查找，<font color=green>直至查找至根目录</font>如果未找到，则报错<code>&quot;can not find module xxx&quot;</code></li>
+<li>如果上述条件均不成立，那么进入上一级目录中的node_modules查找，<font color="green">直至查找至根目录</font>如果未找到，则报错<code>&quot;can not find module xxx&quot;</code></li>
 </ol>
 </li>
 <li>引入模块示例<br>b.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'b执行了’);</span></span><br></pre></td></tr></table></figure>
@@ -363,7 +488,7 @@ a.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class=
 <ul>
 <li>如果某个模块需要直接导出某个成员，而不是通过挂载的方式，那么只能用下面这种方法：<br>b.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = add</span><br></pre></td></tr></table></figure>
 a.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fooObj = <span class="built_in">require</span>(<span class="string">'./b.js'</span>)    <span class="comment">// fooObj就等于add方法 </span></span><br><span class="line"><span class="built_in">console</span>.log(fooObj(<span class="number">1</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure></li>
-<li>不可以直接exports = add，<font color=red>这样exports的引用变了,断开了和module.exports之间的引用</font>, 而返回的是<code>module.exports</code></li>
+<li>不可以直接exports = add，<font color="red">这样exports的引用变了,断开了和module.exports之间的引用</font>, 而返回的是<code>module.exports</code></li>
 <li>同理，给module.exports重新赋值也断开了和exports之间的引用</li>
 <li>node中，每个模块内部都有一个module对象和exports对象，exports默认为空<br>默认代码开始有：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">module</span> = &#123;</span><br><span class="line">    exports: &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">exports = <span class="built_in">module</span>.exports   <span class="comment">// 为简化编程，二者建立同一个引用关系</span></span><br></pre></td></tr></table></figure>
 默认代码后面有:<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="built_in">module</span>.exports</span><br></pre></td></tr></table></figure></li>
@@ -508,7 +633,7 @@ a.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class=
 <p><a href="https://cnodes.org" target="_blank" rel="noopener">nodejs的中文社区</a></p>
 </blockquote>
 <h1 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h1><ol>
-<li>nodejs是 js runtime，用于<font color=red>解析执行js代码</font>，以前只有浏览器可以解析执行js代码</li>
+<li>nodejs是 js runtime，用于<font color="red">解析执行js代码</font>，以前只有浏览器可以解析执行js代码</li>
 <li>node.js不是一门语言，不是库，也不是框架</li>
 <li>node是用来打开服务器黑盒的，除了node，其他的如java,PHP,Pyhton,Ruby,.Net都可以做到<br>具体的API操作可以直接查看官方文档<br>更多底层细节可参考：<blockquote>
 <p>《深入浅出nodejs》</p>
@@ -524,12 +649,12 @@ a.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class=
 </li>
 </ol>
 <ul>
-<li><font color=green>浏览器中的JS没有文件操作能力</font>；但是node中的js有,需要引入fs核心模块</li>
+<li><font color="green">浏览器中的JS没有文件操作能力</font>；但是node中的js有,需要引入fs核心模块</li>
 <li>node不太关注样式，更关注服务端的操作<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line">fs.readFile(path, <span class="function"><span class="keyword">function</span> (<span class="params">error, data</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data.toString())          <span class="comment">// 因为data为16进制数据，不可读,所以需要toString()</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 第二个参数是回调函数，如果成功data有数据，error为null;如果失败，data为undifined, error有数据<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fs.write(peth, string, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (error)&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
 <li>npm是用nodejs开发的包管理工具，绝大多数的JS相关的包都存放在了npm上</li>
 <li>浏览器中的<code>JS == ES + BOM + DOM</code></li>
-<li>Node.js中的JS：<font color=green>只有ES，没有BOM，没有DOM</font></li>
+<li>Node.js中的JS：<font color="green">只有ES，没有BOM，没有DOM</font></li>
 <li>Node主要就是使用ES，核心模块进行编程<h2 id="零散"><a href="#零散" class="headerlink" title="零散"></a>零散</h2>LTS:long time supprt<br>可以直接在浏览器的console 或者 node命令进行API测试<br>node中核心模块可以直接使用，不用require<br>node中字符串中涉及到\需要用\，因为会被转义<br>安装指定版本的包 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i jquery@1.11.0</span><br></pre></td></tr></table></figure>
 <h2 id="8-修改代码自动重启"><a href="#8-修改代码自动重启" class="headerlink" title="8. 修改代码自动重启"></a>8. 修改代码自动重启</h2>通过第三方命令行nodemon解决频繁修改代码后，频繁重启服务器的情况<br>安装：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --global nodemon</span><br><span class="line">nodemon --version     <span class="comment"># 验证是否安装成功</span></span><br></pre></td></tr></table></figure>
 使用：用<code>nodemon</code>代替原来的<code>node</code>，使用nodemon启动的服务，会自动监视代码的变化，然后重启服务器.<br>原来：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node app.js</span><br></pre></td></tr></table></figure>
@@ -634,7 +759,7 @@ a.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class=
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-service=http -permanent</span><br><span class="line">sudo firewall-cmd --add-port=80/tcp --permanent</span><br></pre></td></tr></table></figure>
 <p>​        重启防火墙：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd -reload</span><br><span class="line">nginx启动： <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/nginx/sbin &amp;&amp; ./nginx</span><br><span class="line">nginx关闭： <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/nginx/sbin &amp;&amp; ./nginx -s stop</span><br><span class="line">nginx重新加载：<span class="built_in">cd</span> /usr/<span class="built_in">local</span>/nginx/sbin &amp;&amp;  ./nginx -s reload</span><br></pre></td></tr></table></figure>
-<p>配置文件目录：<code>cd /usr/local/nginx/conf</code><br>主配置文件：<code>nginx.conf</code><br><font color=green>第一部分：全局块</font><br>worker_processes 1;    # 生成的worker process数量<br><font color=green>第二部分： events块</font><br>主要影响nginx服务器与用户的网络连接<br>events {<br>worker_connections 1024;     # 表示每个work process支持的最大连接数为1024<br>}<br><font color=green>第三部分：http块</font><br>代理、缓存、日志定义等功能和第三方模块配置均在这里<br>这里分为<font color=yellow>http全局块、server块</font></p>
+<p>配置文件目录：<code>cd /usr/local/nginx/conf</code><br>主配置文件：<code>nginx.conf</code><br><font color="green">第一部分：全局块</font><br>worker_processes 1;    # 生成的worker process数量<br><font color="green">第二部分： events块</font><br>主要影响nginx服务器与用户的网络连接<br>events {<br>worker_connections 1024;     # 表示每个work process支持的最大连接数为1024<br>}<br><font color="green">第三部分：http块</font><br>代理、缓存、日志定义等功能和第三方模块配置均在这里<br>这里分为<font color="yellow">http全局块、server块</font></p>
 <ul>
 <li><p>http全局块<br>包括文件引入、MIME-TYPE定义、日志自定义、连接超时时间、单链接请求数上限                        </p>
 </li>
@@ -646,9 +771,9 @@ a.js<figure class="highlight js"><table><tr><td class="gutter"><pre><span class=
 </li>
 </ul>
 <p>操作示例</p>
-<p>示例1:   <font color=red>反向代理：</font>访问<a href="http://www.123.com直接跳转至127.0.0.1:8080" target="_blank" rel="noopener">www.123.com直接跳转至127.0.0.1:8080</a></p>
+<p>示例1:   <font color="red">反向代理：</font>访问<a href="http://www.123.com直接跳转至127.0.0.1:8080" target="_blank" rel="noopener">www.123.com直接跳转至127.0.0.1:8080</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">		listen        80           <span class="comment"># 监听80端口</span></span><br><span class="line">		server_name www.123.com    <span class="comment"># 访问域名</span></span><br><span class="line">		location / &#123;</span><br><span class="line">		proxy_pass http://127.0.0.1:8080</span><br><span class="line">		index index.html index.htm index.jsp</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>示例2: <font color=red>根据访问的路径跳转至不同端口的服务</font><br>nginx监听端口为9001<br>访问<a href="http://127.0.0.1:9001/edu/" target="_blank" rel="noopener">http://127.0.0.1:9001/edu/</a> 跳转至  127.0.0.1:8081<br>访问<a href="http://127.0.0.1:9001/vod/" target="_blank" rel="noopener">http://127.0.0.1:9001/vod/</a> 跳转至127.0.0.1:8082</p>
+<p>示例2: <font color="red">根据访问的路径跳转至不同端口的服务</font><br>nginx监听端口为9001<br>访问<a href="http://127.0.0.1:9001/edu/" target="_blank" rel="noopener">http://127.0.0.1:9001/edu/</a> 跳转至  127.0.0.1:8081<br>访问<a href="http://127.0.0.1:9001/vod/" target="_blank" rel="noopener">http://127.0.0.1:9001/vod/</a> 跳转至127.0.0.1:8082</p>
 <ol>
 <li>准备两个tomcat，一个8001端口，一个8002端口</li>
 <li>修改nginx.conf<br>http块中添加server{}<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">		listen 9001;</span><br><span class="line">		server_name localhost</span><br><span class="line">		location ~ /edu/ &#123;</span><br><span class="line">				proxy_pass http://localhost:8081;</span><br><span class="line">		&#125;</span><br><span class="line">		location ~ /vod/ &#123;</span><br><span class="line">				proxy_pass http://localhost:8082;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -662,7 +787,7 @@ location指令</li>
 <li>～*：表示uri包含正则，并且不区分大小写</li>
 <li>^~:表示不含正则的uri前，nginx服务器会找到标识uri和请求字符串匹配度最高的location</li>
 </ol>
-<p>示例3:<font color=red>负载均衡</font></p>
+<p>示例3:<font color="red">负载均衡</font></p>
 <p>准备两个同时启动的tomcat<br>nginx.conf中配置</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">http&#123;</span><br><span class="line">		......</span><br><span class="line">		upstream myserver&#123;</span><br><span class="line">				ip_hash;</span><br><span class="line">				server 115.28.52.63:8080 weight=1;</span><br><span class="line">				server 115.28.52.63:8180 weight=1;</span><br><span class="line">		&#125;</span><br><span class="line">		......</span><br><span class="line">		server&#123;</span><br><span class="line">				location / &#123;</span><br><span class="line">					proxy_pass http://myserver;</span><br><span class="line">					proxy_connect_timeout 10;</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -762,7 +887,7 @@ location指令</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

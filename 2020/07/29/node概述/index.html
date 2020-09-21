@@ -223,7 +223,7 @@
 <p><a href="https://cnodes.org" target="_blank" rel="noopener">nodejs的中文社区</a></p>
 </blockquote>
 <h1 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h1><ol>
-<li>nodejs是 js runtime，用于<font color=red>解析执行js代码</font>，以前只有浏览器可以解析执行js代码</li>
+<li>nodejs是 js runtime，用于<font color="red">解析执行js代码</font>，以前只有浏览器可以解析执行js代码</li>
 <li>node.js不是一门语言，不是库，也不是框架</li>
 <li>node是用来打开服务器黑盒的，除了node，其他的如java,PHP,Pyhton,Ruby,.Net都可以做到<br>具体的API操作可以直接查看官方文档<br>更多底层细节可参考：<blockquote>
 <p>《深入浅出nodejs》</p>
@@ -239,12 +239,12 @@
 </li>
 </ol>
 <ul>
-<li><font color=green>浏览器中的JS没有文件操作能力</font>；但是node中的js有,需要引入fs核心模块</li>
+<li><font color="green">浏览器中的JS没有文件操作能力</font>；但是node中的js有,需要引入fs核心模块</li>
 <li>node不太关注样式，更关注服务端的操作<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line">fs.readFile(path, <span class="function"><span class="keyword">function</span> (<span class="params">error, data</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data.toString())          <span class="comment">// 因为data为16进制数据，不可读,所以需要toString()</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 第二个参数是回调函数，如果成功data有数据，error为null;如果失败，data为undifined, error有数据<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fs.write(peth, string, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (error)&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
 <li>npm是用nodejs开发的包管理工具，绝大多数的JS相关的包都存放在了npm上</li>
 <li>浏览器中的<code>JS == ES + BOM + DOM</code></li>
-<li>Node.js中的JS：<font color=green>只有ES，没有BOM，没有DOM</font></li>
+<li>Node.js中的JS：<font color="green">只有ES，没有BOM，没有DOM</font></li>
 <li>Node主要就是使用ES，核心模块进行编程<h2 id="零散"><a href="#零散" class="headerlink" title="零散"></a>零散</h2>LTS:long time supprt<br>可以直接在浏览器的console 或者 node命令进行API测试<br>node中核心模块可以直接使用，不用require<br>node中字符串中涉及到\需要用\，因为会被转义<br>安装指定版本的包 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i jquery@1.11.0</span><br></pre></td></tr></table></figure>
 <h2 id="8-修改代码自动重启"><a href="#8-修改代码自动重启" class="headerlink" title="8. 修改代码自动重启"></a>8. 修改代码自动重启</h2>通过第三方命令行nodemon解决频繁修改代码后，频繁重启服务器的情况<br>安装：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --global nodemon</span><br><span class="line">nodemon --version     <span class="comment"># 验证是否安装成功</span></span><br></pre></td></tr></table></figure>
 使用：用<code>nodemon</code>代替原来的<code>node</code>，使用nodemon启动的服务，会自动监视代码的变化，然后重启服务器.<br>原来：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node app.js</span><br></pre></td></tr></table></figure>
@@ -347,7 +347,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

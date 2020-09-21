@@ -241,7 +241,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-service=http -permanent</span><br><span class="line">sudo firewall-cmd --add-port=80/tcp --permanent</span><br></pre></td></tr></table></figure>
 <p>​        重启防火墙：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd -reload</span><br><span class="line">nginx启动： <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/nginx/sbin &amp;&amp; ./nginx</span><br><span class="line">nginx关闭： <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/nginx/sbin &amp;&amp; ./nginx -s stop</span><br><span class="line">nginx重新加载：<span class="built_in">cd</span> /usr/<span class="built_in">local</span>/nginx/sbin &amp;&amp;  ./nginx -s reload</span><br></pre></td></tr></table></figure>
-<p>配置文件目录：<code>cd /usr/local/nginx/conf</code><br>主配置文件：<code>nginx.conf</code><br><font color=green>第一部分：全局块</font><br>worker_processes 1;    # 生成的worker process数量<br><font color=green>第二部分： events块</font><br>主要影响nginx服务器与用户的网络连接<br>events {<br>worker_connections 1024;     # 表示每个work process支持的最大连接数为1024<br>}<br><font color=green>第三部分：http块</font><br>代理、缓存、日志定义等功能和第三方模块配置均在这里<br>这里分为<font color=yellow>http全局块、server块</font></p>
+<p>配置文件目录：<code>cd /usr/local/nginx/conf</code><br>主配置文件：<code>nginx.conf</code><br><font color="green">第一部分：全局块</font><br>worker_processes 1;    # 生成的worker process数量<br><font color="green">第二部分： events块</font><br>主要影响nginx服务器与用户的网络连接<br>events {<br>worker_connections 1024;     # 表示每个work process支持的最大连接数为1024<br>}<br><font color="green">第三部分：http块</font><br>代理、缓存、日志定义等功能和第三方模块配置均在这里<br>这里分为<font color="yellow">http全局块、server块</font></p>
 <ul>
 <li><p>http全局块<br>包括文件引入、MIME-TYPE定义、日志自定义、连接超时时间、单链接请求数上限                        </p>
 </li>
@@ -253,9 +253,9 @@
 </li>
 </ul>
 <p>操作示例</p>
-<p>示例1:   <font color=red>反向代理：</font>访问<a href="http://www.123.com直接跳转至127.0.0.1:8080" target="_blank" rel="noopener">www.123.com直接跳转至127.0.0.1:8080</a></p>
+<p>示例1:   <font color="red">反向代理：</font>访问<a href="http://www.123.com直接跳转至127.0.0.1:8080" target="_blank" rel="noopener">www.123.com直接跳转至127.0.0.1:8080</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">		listen        80           <span class="comment"># 监听80端口</span></span><br><span class="line">		server_name www.123.com    <span class="comment"># 访问域名</span></span><br><span class="line">		location / &#123;</span><br><span class="line">		proxy_pass http://127.0.0.1:8080</span><br><span class="line">		index index.html index.htm index.jsp</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>示例2: <font color=red>根据访问的路径跳转至不同端口的服务</font><br>nginx监听端口为9001<br>访问<a href="http://127.0.0.1:9001/edu/" target="_blank" rel="noopener">http://127.0.0.1:9001/edu/</a> 跳转至  127.0.0.1:8081<br>访问<a href="http://127.0.0.1:9001/vod/" target="_blank" rel="noopener">http://127.0.0.1:9001/vod/</a> 跳转至127.0.0.1:8082</p>
+<p>示例2: <font color="red">根据访问的路径跳转至不同端口的服务</font><br>nginx监听端口为9001<br>访问<a href="http://127.0.0.1:9001/edu/" target="_blank" rel="noopener">http://127.0.0.1:9001/edu/</a> 跳转至  127.0.0.1:8081<br>访问<a href="http://127.0.0.1:9001/vod/" target="_blank" rel="noopener">http://127.0.0.1:9001/vod/</a> 跳转至127.0.0.1:8082</p>
 <ol>
 <li>准备两个tomcat，一个8001端口，一个8002端口</li>
 <li>修改nginx.conf<br>http块中添加server{}<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">		listen 9001;</span><br><span class="line">		server_name localhost</span><br><span class="line">		location ~ /edu/ &#123;</span><br><span class="line">				proxy_pass http://localhost:8081;</span><br><span class="line">		&#125;</span><br><span class="line">		location ~ /vod/ &#123;</span><br><span class="line">				proxy_pass http://localhost:8082;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -269,7 +269,7 @@ location指令</li>
 <li>～*：表示uri包含正则，并且不区分大小写</li>
 <li>^~:表示不含正则的uri前，nginx服务器会找到标识uri和请求字符串匹配度最高的location</li>
 </ol>
-<p>示例3:<font color=red>负载均衡</font></p>
+<p>示例3:<font color="red">负载均衡</font></p>
 <p>准备两个同时启动的tomcat<br>nginx.conf中配置</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">http&#123;</span><br><span class="line">		......</span><br><span class="line">		upstream myserver&#123;</span><br><span class="line">				ip_hash;</span><br><span class="line">				server 115.28.52.63:8080 weight=1;</span><br><span class="line">				server 115.28.52.63:8180 weight=1;</span><br><span class="line">		&#125;</span><br><span class="line">		......</span><br><span class="line">		server&#123;</span><br><span class="line">				location / &#123;</span><br><span class="line">					proxy_pass http://myserver;</span><br><span class="line">					proxy_connect_timeout 10;</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -379,7 +379,7 @@ location指令</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
